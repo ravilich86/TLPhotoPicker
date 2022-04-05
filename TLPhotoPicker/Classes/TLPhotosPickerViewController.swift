@@ -94,6 +94,7 @@ public struct TLPhotosPickerConfigure {
     public var groupByFetch: PHFetchedResultGroupedBy? = nil
     public var supportedInterfaceOrientations: UIInterfaceOrientationMask = .portrait
     public var popup: [PopupConfigure] = []
+    public var openCameraModeInFullScreen = false
     public init() {
         
     }
@@ -1267,7 +1268,7 @@ extension TLPhotosPickerViewController {
         if Platform.isSimulator {
             print("not supported by the simulator.")
         } else {
-            if configure.cameraCellNibSet?.nibName != nil {
+            if !cell.configure.openCameraModeInFullScreen, configure.cameraCellNibSet?.nibName != nil {
                 cell.selectedCell()
             } else {
                 showCameraIfAuthorized()
